@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<div class="container">
+
+    <button class="button-default"><a href="{% url 'home' %}">Home</a></button>
+    {% if not request.user.id %}
+        <button class="button-default"><a href="{% url 'login' %}">Login</a></button>
+        <button class="button-default"><a href="{% url 'create_user' %}">Sign Up</a></button>
+        {% else %}
+        <button class="button-default"><a href="{% url 'logout' %}?next=/">Logout</a></button>
+        <button class="button-default"><a href="{% url 'create_profile' %}">Create Profile</a></button>
+    {% endif %}
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>
