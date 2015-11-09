@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if not request.user.id %}
+        <button class="button-default"><a href="{% url 'login' %}">Login</a></button>
+        <button class="button-default"><a href="{% url 'create_user' %}">Sign Up</a></button>
+        {% else %}
+        <button class="button-default"><a href="{% url 'logout' %}?next=/">Logout</a></button>
+    {% endif %}
+    {% if Profile.classification == 1 %}
+    {% else %}
+    {% endif %}
+{% endblock %}
