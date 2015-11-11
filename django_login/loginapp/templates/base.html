@@ -18,15 +18,9 @@
                     </button>
                     {% if request.user.id %}
                         <button class="button-default">
-                            <a href="{%  url "logout" %}?next=/">Logout</a>
-                        </button>
-                        <button class="button-default">
                             <a href="{% url "update_profile" %}?next=/">Update Profile</a>
                         </button>
                     {% else %}
-                       <button class="button-default">
-                            <a href="{% url "login" %}">Login</a>
-                        </button>
                         <button class="button-default">
                             <a href="{% url "create_account" %}">Create Account</a>
                         </button>
