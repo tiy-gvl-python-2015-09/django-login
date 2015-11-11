@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from loginapp.views import home_view, UserCreateView, UpdateProfileView
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', home_view, name="home_view"),
+    url(r'^login/$', name="login"),
+    url(r'^logout/$', name="logout"),
+    url(r'^update_profile/$', UpdateProfileView.as_view(), name="update_profile"),
+    url(r'^create_account/$', UserCreateView.as_view(), name="create_account"),
 ]

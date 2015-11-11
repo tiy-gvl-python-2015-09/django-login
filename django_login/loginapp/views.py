@@ -1,8 +1,16 @@
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.shortcuts import render
+from django.http import HttpResponse
+from django.shortcuts import render, render_to_response
 
 # Create your views here.
-from django.views.generic import CreateView
+from django.views.generic import CreateView, FormView
+
+
+def home_view(request):
+    context = {}
+    return render_to_response(template_name="index.html", context=context)
 
 
 class UserCreateView(CreateView):
@@ -18,4 +26,5 @@ class UserCreateView(CreateView):
         login(self.request, user)
         return super().form_valid(form)
 
-c
+class UpdateProfileView(CreateView):
+    pass
