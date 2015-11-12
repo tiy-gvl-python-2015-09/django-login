@@ -12,20 +12,20 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
              <div class="navbar-header">
-                <div class="navbar-header">
                     <button class="button-default">
                         <a href="{% url "home_view" %}">Home</a>
                     </button>
                     {% if request.user.id %}
-                        <button class="button-default">
-                            <a href="{% url "update_profile" %}?next=/">Update Profile</a>
-                        </button>
+                        <ul class="button-default">
+                            <li><a href="{% url "logout" %}?next=/">Logout</a></li>
+                            <li><a href="{% url "update_profile" %}?next=/">Update Profile</a></li>
+                        </ul>
                     {% else %}
-                        <button class="button-default">
-                            <a href="{% url "create_account" %}">Create Account</a>
-                        </button>
+                       <ul class="button-default">
+                            <li><a href="{% url "login" %}">Login</a></li>
+                            <li><a href="{% url "create_account" %}">Create Account</a></li>
+                        </ul>
                     {% endif %}
-                </div>
              </div>
         </div>
         {% block content %}

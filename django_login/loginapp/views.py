@@ -6,6 +6,7 @@ from django.shortcuts import render, render_to_response
 
 # Create your views here.
 from django.views.generic import CreateView, FormView
+from loginapp.models import Profile
 
 
 def home_view(request):
@@ -16,7 +17,7 @@ def home_view(request):
 class UserCreateView(CreateView):
     model = User
     form_class = UserCreationForm
-    success_url = "/create_profile/"
+    success_url = "/create_account/"
 
     def validate(self, form):
         form.save()
@@ -26,5 +27,8 @@ class UserCreateView(CreateView):
         login(self.request, user)
         return super().form_valid(form)
 
+
 class UpdateProfileView(CreateView):
-    pass
+    model = Profile
+    fields = ["user_type"]
+    success_url = "/"
