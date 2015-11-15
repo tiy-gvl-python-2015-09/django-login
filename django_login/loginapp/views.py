@@ -13,6 +13,7 @@ def home_view(request):
     context = {}
     return render_to_response(template_name="index.html", context=context)
 
+
 class HomeView(TemplateView):
     template_name = "index.html"
 

@@ -8,30 +8,29 @@
 </head>
 <body>
 
-<div class="container">
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-             <div class="navbar-header">
-                    <button class="button-default">
-                        <a href="{% url "home_view" %}">Home</a>
-                    </button>
-                    {% if request.user.id %}
-                        <ul class="button-default">
-                            <li><a href="{% url "logout" %}?next=/">Logout</a></li>
-                            <li><a href="{% url "update_profile" request.user.profile.id %}?next=/">Update Profile</a></li>
-                        </ul>
-                    {% else %}
-                       <ul class="button-default">
-                            <li><a href="{% url "login" %}">Login</a></li>
-                            <li><a href="{% url "create_account" %}">Create Account</a></li>
-                        </ul>
-                    {% endif %}
-             </div>
-        </div>
-    {{ request.user.pk}}
-        {% block content %}
-        {% endblock %}
+<div class="container-fluid">
+    <nav class="navbar navbar-default">
+            <button class="button-default">
+                <a href="{% url "home_view" %}">Home</a>
+            </button>
+            {% if request.user.id %}
+                <button class="button-default">
+                    <a href="{% url "logout" %}?next=/">Logout</a>
+                </button>
+                <button class="button-default">
+                   <a href="{% url "update_profile" user.id %}">Update Profile</a>
+                </button>
+                Hello, {{ user }}
+            {% else %}
+                <button class="button-default">
+                   <a href="{% url "login" %}">Login</a>
+                </button>
+                <button class="button-default">
+                    <a href="{% url "create_account" %}">Create Account</a>
+                </button>
+            {% endif %}
     </nav>
-</div>
+    {% block content %}
+    {% endblock %}</div>
 </body>
 </html>
