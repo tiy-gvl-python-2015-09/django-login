@@ -5,13 +5,16 @@ from django.http import HttpResponse
 from django.shortcuts import render, render_to_response
 
 # Create your views here.
-from django.views.generic import CreateView, FormView
+from django.views.generic import CreateView, FormView, TemplateView, UpdateView
 from loginapp.models import Profile
 
 
 def home_view(request):
     context = {}
     return render_to_response(template_name="index.html", context=context)
+
+class HomeView(TemplateView):
+    template_name = "index.html"
 
 
 class UserCreateView(CreateView):
@@ -28,7 +31,12 @@ class UserCreateView(CreateView):
         return super().form_valid(form)
 
 
-class UpdateProfileView(CreateView):
+class UpdateProfileView(UpdateView):
     model = Profile
     fields = ["user_type"]
     success_url = "/"
+
+    def form_valid(self, form):
+        model = form.save(commit=False)
+        model.user = self.request.user
+        return super().form_valid(form)

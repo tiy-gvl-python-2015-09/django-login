@@ -16,11 +16,11 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth.decorators import login_required
-from loginapp.views import home_view, UserCreateView, UpdateProfileView
+from loginapp.views import HomeView, UserCreateView, UpdateProfileView
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', home_view, name="home_view"),
+    url(r'^$', HomeView.as_view(), name="home_view"),
     url(r'^update_profile/(?P<pk>\d+)/$', login_required(UpdateProfileView.as_view()), name="update_profile"),
     url(r'^create_account/$', UserCreateView.as_view(), name="create_account"),
     url(r'^accounts/', include('django.contrib.auth.urls')),

@@ -18,7 +18,7 @@
                     {% if request.user.id %}
                         <ul class="button-default">
                             <li><a href="{% url "logout" %}?next=/">Logout</a></li>
-                            <li><a href="{% url "update_profile" %}?next=/">Update Profile</a></li>
+                            <li><a href="{% url "update_profile" request.user.profile.id %}?next=/">Update Profile</a></li>
                         </ul>
                     {% else %}
                        <ul class="button-default">
@@ -28,6 +28,7 @@
                     {% endif %}
              </div>
         </div>
+    {{ request.user.pk}}
         {% block content %}
         {% endblock %}
     </nav>

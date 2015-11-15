@@ -19,4 +19,4 @@ def user_post_save(sender, **kwargs):
     instance = kwargs.get("instance")
     created = kwargs.get("created")
     if created:
-        Profile.objects.create(user=instance)
+        Profile.objects.create(user=instance, user_type=0)
