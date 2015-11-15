@@ -1,0 +1,36 @@
+{%  load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.css' %}">
+</head>
+<body>
+
+<div class="container-fluid">
+    <nav class="navbar navbar-default">
+            <button class="button-default">
+                <a href="{% url "home_view" %}">Home</a>
+            </button>
+            {% if request.user.id %}
+                <button class="button-default">
+                    <a href="{% url "logout" %}?next=/">Logout</a>
+                </button>
+                <button class="button-default">
+                   <a href="{% url "update_profile" user.id %}">Update Profile</a>
+                </button>
+                Hello, {{ user }}
+            {% else %}
+                <button class="button-default">
+                   <a href="{% url "login" %}">Login</a>
+                </button>
+                <button class="button-default">
+                    <a href="{% url "create_account" %}">Create Account</a>
+                </button>
+            {% endif %}
+    </nav>
+    {% block content %}
+    {% endblock %}</div>
+</body>
+</html>
